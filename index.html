@@ -29,6 +29,130 @@
         color: #ffffff;
         overflow-x: hidden;
         line-height: 1.6;
+        transition:
+          background 0.4s ease,
+          color 0.4s ease;
+      }
+
+      /* ── LIGHT MODE COMPLETE OVERHAUL ── */
+      body.light {
+        background: #f8fafc;
+        color: #0b0f19;
+      }
+
+      /* 1. Glass panels - increased opacity for perfect contrast */
+      body.light .glass,
+      body.light .glass-light,
+      body.light .glass-card,
+      body.light .dashboard-mockup {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(20px);
+        border-color: rgba(0, 0, 0, 0.05);
+      }
+      body.light .glass-card:hover {
+        background: rgba(255, 255, 255, 0.95) !important;
+      }
+
+      /* 2. Force ALL white/opacity text to become Dark Gray/Black */
+      body.light .text-white,
+      body.light .text-white\/95,
+      body.light .text-white\/90,
+      body.light .text-white\/80,
+      body.light .text-white\/70,
+      body.light .text-white\/60,
+      body.light .text-white\/50,
+      body.light .text-white\/40,
+      body.light .text-white\/30 {
+        color: rgba(11, 15, 25, 0.9) !important;
+      }
+
+      /* 3. FIX pale utility colors (so they are bold & visible) */
+      body.light .text-purple-300 {
+        color: #7c3aed !important;
+      } /* purple-600 */
+      body.light .text-purple-400 {
+        color: #7c3aed !important;
+      } /* purple-600 */
+      body.light .text-blue-300 {
+        color: #3b82f6 !important;
+      } /* blue-500 */
+      body.light .text-blue-400 {
+        color: #3b82f6 !important;
+      } /* blue-500 */
+      body.light .text-green-400 {
+        color: #16a34a !important;
+      } /* green-600 */
+      body.light .text-yellow-400 {
+        color: #d97706 !important;
+      } /* amber-600 */
+
+      /* 4. PRESERVE WHITE TEXT on gradient buttons & badges (Fixes "Most Popular" badge) */
+      body.light .gradient-btn,
+      body.light .gradient-btn i,
+      body.light .gradient-btn .text-white,
+      body.light .bg-gradient-to-r .text-white,
+      body.light .bg-gradient-to-tr .text-white,
+      body.light .pricing-pro .absolute.text-white {
+        color: #ffffff !important;
+      }
+
+      /* 5. Fix Hover States */
+      body.light .hover\:text-white:hover {
+        color: rgba(11, 15, 25, 0.9) !important;
+      }
+      body.light .hover\:text-purple-400:hover {
+        color: #7c3aed !important;
+      }
+
+      /* 6. Other light mode adjustments */
+      body.light .pricing-pro {
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+      body.light .bg-white\/5 {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      body.light .border-white\/5 {
+        border-color: rgba(0, 0, 0, 0.05);
+      }
+      body.light .border-white\/10 {
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+      body.light .glow-purple,
+      body.light .glow-blue {
+        opacity: 0.4;
+      }
+      body.light .hero-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.05) 1px,
+          transparent 1px
+        );
+      }
+      body.light .company-logo {
+        filter: grayscale(1) brightness(0.8);
+      }
+      body.light .company-logo:hover {
+        filter: grayscale(0) brightness(1);
+      }
+
+      /* ── Light mode chart bars (stronger opacity) ── */
+      body.light .chart-bar.bg-purple-500\/30 {
+        background: rgba(124, 58, 237, 0.6) !important;
+      }
+      body.light .chart-bar.bg-purple-500\/40 {
+        background: rgba(124, 58, 237, 0.7) !important;
+      }
+      body.light .chart-bar.bg-purple-500\/50 {
+        background: rgba(124, 58, 237, 0.8) !important;
+      }
+      body.light .chart-bar.bg-blue-500\/50 {
+        background: rgba(59, 130, 246, 0.8) !important;
+      }
+      body.light .chart-bar.bg-blue-500\/40 {
+        background: rgba(59, 130, 246, 0.7) !important;
+      }
+      body.light .chart-bar.bg-blue-500\/30 {
+        background: rgba(59, 130, 246, 0.6) !important;
       }
 
       /* ── Scrollbar ── */
@@ -38,28 +162,31 @@
       ::-webkit-scrollbar-track {
         background: #0b0f19;
       }
+      body.light ::-webkit-scrollbar-track {
+        background: #e2e8f0;
+      }
       ::-webkit-scrollbar-thumb {
         background: linear-gradient(135deg, #7c3aed, #3b82f6);
         border-radius: 10px;
       }
 
-      /* ── Glassmorphism ── */
+      /* ── Glassmorphism Base ── */
       .glass {
         background: rgba(255, 255, 255, 0.04);
         backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(255, 255, 255, 0.06);
+        transition:
+          background 0.4s ease,
+          border-color 0.4s ease;
       }
       .glass-light {
         background: rgba(255, 255, 255, 0.06);
         backdrop-filter: blur(14px);
-        -webkit-backdrop-filter: blur(14px);
         border: 1px solid rgba(255, 255, 255, 0.08);
       }
       .glass-card {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
         border: 1px solid rgba(255, 255, 255, 0.06);
         transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
@@ -84,6 +211,18 @@
       .gradient-btn:hover {
         transform: scale(1.04);
         box-shadow: 0 8px 30px rgba(124, 58, 237, 0.5);
+      }
+
+      /* ── Noise Texture ── */
+      .noise-overlay {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 0;
+        opacity: 0.03;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        background-repeat: repeat;
+        background-size: 256px 256px;
       }
 
       /* ── Hero Background Grid ── */
@@ -310,25 +449,16 @@
         transition-delay: 0.3s;
       }
 
-      /* ── Pricing highlight ── */
-      .pricing-pro {
-        border: 1px solid rgba(124, 58, 237, 0.4);
-        box-shadow: 0 0 40px rgba(124, 58, 237, 0.15);
-      }
       /* ── Pricing Card Enhancements ── */
       .pricing-card {
         transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
         position: relative;
         overflow: hidden;
       }
-
-      /* Hover Lift & Scale */
       .pricing-card:hover {
         transform: translateY(-12px) scale(1.02) !important;
         box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
       }
-
-      /* Border Shine (moving gradient) */
       .pricing-card::before {
         content: "";
         position: absolute;
@@ -354,63 +484,52 @@
         transition: background-position 0.8s ease;
         pointer-events: none;
       }
-
       .pricing-card:hover::before {
         background-position: 100% 0;
       }
-
-      /* Pro Plan Glow */
       .pricing-pro {
         border-color: rgba(124, 58, 237, 0.4);
         box-shadow: 0 0 30px rgba(124, 58, 237, 0.1);
         transform: scale(1.04);
         transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
-
       .pricing-pro:hover {
         box-shadow:
           0 0 60px rgba(124, 58, 237, 0.25),
           0 30px 60px rgba(0, 0, 0, 0.5);
       }
 
-      /* Button Arrow Animation */
+      /* ── Button Arrow Animation ── */
       .pricing-btn {
         transition: all 0.3s ease;
         position: relative;
       }
-
       .pricing-btn:hover {
         transform: scale(1.02);
       }
-
       .pricing-btn:hover i {
         transform: translateX(4px);
       }
 
-      /* ── Scroll Reveal ── */
+      /* ── Scroll Reveal for Pricing ── */
       .reveal-container .pricing-card {
         opacity: 0;
         transform: translateY(30px);
         transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
       }
-
       .reveal-container .reveal-left {
         transform: translateX(-40px);
       }
-
       .reveal-container .reveal-right {
         transform: translateX(40px);
       }
-
       .reveal-container .reveal-bottom {
         transform: translateY(40px);
       }
-
       .reveal-container .pricing-card.revealed {
         opacity: 1;
         transform: translateX(0) translateY(0) scale(1);
       }
-
       .reveal-container .pricing-card.revealed.pricing-pro {
         transform: translateX(0) translateY(0) scale(1.04);
       }
@@ -421,7 +540,6 @@
           opacity 0.3s ease,
           transform 0.3s ease;
       }
-
       .price-display.switching {
         opacity: 0;
         transform: translateY(-8px);
@@ -472,10 +590,48 @@
       .dashboard-mockup {
         background: rgba(255, 255, 255, 0.03);
         backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 24px;
         box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+        transition:
+          background 0.4s ease,
+          border-color 0.4s ease;
+      }
+
+      /* ── Link Hover Animation ── */
+      .nav-link {
+        position: relative;
+        transition: color 0.3s ease;
+      }
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+        width: 0;
+        height: 2px;
+        background: linear-gradient(135deg, #a78bfa, #3b82f6);
+        transition: width 0.3s ease;
+      }
+      .nav-link:hover::after {
+        width: 100%;
+      }
+
+      /* ── Icon Rotation on Hover ── */
+      .icon-rotate {
+        transition: transform 0.4s ease;
+      }
+      .icon-rotate:hover {
+        transform: rotate(15deg) scale(1.1);
+      }
+
+      /* ── Theme Toggle ── */
+      .theme-toggle {
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .theme-toggle:hover {
+        transform: rotate(20deg);
       }
 
       /* ── Responsive ── */
@@ -488,10 +644,588 @@
         .hero-grid {
           background-size: 25px 25px;
         }
+        .dashboard-mockup .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      /* ── Features Section Premium Animations ── */
+      #features .glass-card {
+        position: relative;
+        overflow: hidden;
+      }
+      #features .glass-card:hover {
+        transform: translateY(-14px) scale(1.02) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6);
+        border-color: rgba(124, 58, 237, 0.3);
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #features .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(124, 58, 237, 0.08) 60%,
+          transparent 80%
+        );
+        background-size: 300% 300%;
+        pointer-events: none;
+        transition: background-position 0.8s ease;
+        opacity: 0;
+      }
+      #features .glass-card:hover::after {
+        opacity: 1;
+        background-position: 100% 100%;
+      }
+      #features .icon-rotate:hover {
+        transform: rotate(15deg) scale(1.2);
+        color: #a78bfa;
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          color 0.3s ease;
+      }
+      .fade-section.visible #features .glass-card:nth-child(1) {
+        transition-delay: 0.08s;
+      }
+      .fade-section.visible #features .glass-card:nth-child(2) {
+        transition-delay: 0.16s;
+      }
+      .fade-section.visible #features .glass-card:nth-child(3) {
+        transition-delay: 0.24s;
+      }
+      .fade-section.visible #features .glass-card:nth-child(4) {
+        transition-delay: 0.32s;
+      }
+      .fade-section.visible #features .glass-card:nth-child(5) {
+        transition-delay: 0.4s;
+      }
+      .fade-section.visible #features .glass-card:nth-child(6) {
+        transition-delay: 0.48s;
+      }
+
+      /* ── Stats Section Isolated Entry & Hover ── */
+      #stats .glass-card {
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease,
+          box-shadow 0.5s ease,
+          border-color 0.5s ease;
+      }
+
+      #stats.visible .glass-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      #stats.visible .glass-card:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      #stats.visible .glass-card:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      #stats.visible .glass-card:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+
+      /* Hover effects */
+      #stats .glass-card:hover {
+        transform: translateY(-10px) scale(1.02) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+      #stats .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(124, 58, 237, 0.08) 60%,
+          transparent 80%
+        );
+        background-size: 300% 300%;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          background-position 0.8s ease,
+          opacity 0.4s ease;
+      }
+      #stats .glass-card:hover::after {
+        opacity: 1;
+        background-position: 100% 100%;
+      }
+      #stats .glass-card:hover .stat-number {
+        transform: scale(1.05);
+        color: #a78bfa;
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          color 0.3s ease;
+      }
+
+      body.light #stats .glass-card:hover {
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08);
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+      body.light #stats .glass-card:hover .stat-number {
+        color: #7c3aed;
+      }
+
+      /* ── How It Works Section Premium Animations ── */
+      #how-it-works .glass-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #how-it-works .glass-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      #how-it-works.visible .glass-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #how-it-works.visible .glass-card:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      #how-it-works.visible .glass-card:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      #how-it-works.visible .glass-card:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      #how-it-works .glass-card:hover {
+        transform: translateY(-10px) scale(1.02) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+      #how-it-works .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(124, 58, 237, 0.08) 60%,
+          transparent 80%
+        );
+        background-size: 300% 300%;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          background-position 0.8s ease,
+          opacity 0.4s ease;
+      }
+      #how-it-works .glass-card:hover::after {
+        opacity: 1;
+        background-position: 100% 100%;
+      }
+      #how-it-works .glass-card:hover .w-16.h-16 {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.4s ease;
+      }
+      #how-it-works .glass-card:hover .w-16.h-16.bg-purple-500\/20 {
+        background: rgba(124, 58, 237, 0.3);
+      }
+      #how-it-works .glass-card:hover .w-16.h-16.bg-blue-500\/20 {
+        background: rgba(59, 130, 246, 0.3);
+      }
+
+      /* ── Testimonials Section Premium Animations ── */
+      #testimonials .glass-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #testimonials .glass-card {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.8s ease,
+          transform 0.8s ease;
+      }
+      #testimonials.visible .glass-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #testimonials.visible .glass-card:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      #testimonials.visible .glass-card:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      #testimonials.visible .glass-card:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      #testimonials .glass-card:hover {
+        transform: translateY(-10px) scale(1.02) !important;
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+      #testimonials .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(124, 58, 237, 0.08) 60%,
+          transparent 80%
+        );
+        background-size: 300% 300%;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          background-position 0.8s ease,
+          opacity 0.4s ease;
+      }
+      #testimonials .glass-card:hover::after {
+        opacity: 1;
+        background-position: 100% 100%;
+      }
+      #testimonials .glass-card:hover .w-10.h-10 {
+        transform: scale(1.1);
+        box-shadow: 0 0 30px rgba(124, 58, 237, 0.3);
+        transition:
+          transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+          box-shadow 0.4s ease;
+      }
+      #testimonials .glass-card:hover .text-yellow-400 {
+        text-shadow: 0 0 15px rgba(250, 204, 21, 0.3);
+        transition: text-shadow 0.4s ease;
+      }
+
+      /* ── CTA Section Premium Animations ── */
+      #cta .glass-card {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #cta h2,
+      #cta .mt-4,
+      #cta .mt-8,
+      #cta .mt-4.text-xs {
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #cta.visible h2 {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.1s;
+      }
+      #cta.visible .mt-4 {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.2s;
+      }
+      #cta.visible .mt-8 {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.3s;
+      }
+      #cta.visible .mt-4.text-xs {
+        opacity: 1;
+        transform: translateY(0);
+        transition-delay: 0.4s;
+      }
+      #cta .glass-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      }
+      #cta .glow-purple,
+      #cta .glow-blue {
+        transition: transform 1.5s ease-in-out;
+      }
+      #cta .glass-card:hover .glow-purple {
+        transform: translate(40px, -20px) scale(1.2);
+      }
+      #cta .glass-card:hover .glow-blue {
+        transform: translate(-30px, 30px) scale(1.1);
+      }
+      #cta .gradient-btn {
+        transition: all 0.3s ease;
+      }
+      #cta .gradient-btn:hover {
+        transform: scale(1.04);
+      }
+      #cta .gradient-btn:hover i {
+        transform: translateX(5px);
+        transition: transform 0.3s ease;
+      }
+      #cta .glass-light {
+        transition: all 0.3s ease;
+      }
+      #cta .glass-light:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.1);
+        transform: scale(1.02);
+      }
+
+      /* ── Hero Buttons Premium Animations ── */
+      .hero-btn {
+        position: relative;
+        transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      #home .hero-btn {
+        opacity: 0;
+        transform: translateY(20px);
+        animation: heroBtnFadeIn 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+      }
+      #home .hero-btn:nth-child(1) {
+        animation-delay: 0.6s;
+      }
+      #home .hero-btn:nth-child(2) {
+        animation-delay: 0.75s;
+      }
+      @keyframes heroBtnFadeIn {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-btn:hover {
+        transform: translateY(-4px) scale(1.03);
+      }
+      .hero-btn i {
+        transition: transform 0.3s ease;
+      }
+      .hero-btn:hover i {
+        transform: translateX(5px);
+      }
+      .hero-btn.gradient-btn:hover {
+        box-shadow: 0 12px 40px rgba(124, 58, 237, 0.5);
+      }
+      .hero-btn.glass-light:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      }
+      /* ── FAQ Section Premium Animations ── */
+      #faq .glass-card {
+        position: relative;
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+
+      /* 1. Staggered Entry */
+      #faq.visible .glass-card {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      #faq.visible .glass-card:nth-child(1) {
+        transition-delay: 0.1s;
+      }
+      #faq.visible .glass-card:nth-child(2) {
+        transition-delay: 0.2s;
+      }
+      #faq.visible .glass-card:nth-child(3) {
+        transition-delay: 0.3s;
+      }
+      #faq.visible .glass-card:nth-child(4) {
+        transition-delay: 0.4s;
+      }
+
+      /* 2. Card Hover: Lift, Glow & Border */
+      #faq .glass-card:hover {
+        transform: translateY(-4px) scale(1.01) !important;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        border-color: rgba(124, 58, 237, 0.3);
+      }
+
+      /* 3. Sweeping Gradient Overlay on Hover */
+      #faq .glass-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: linear-gradient(
+          135deg,
+          transparent 40%,
+          rgba(124, 58, 237, 0.08) 60%,
+          transparent 80%
+        );
+        background-size: 300% 300%;
+        pointer-events: none;
+        opacity: 0;
+        transition:
+          background-position 0.8s ease,
+          opacity 0.4s ease;
+      }
+      #faq .glass-card:hover::after {
+        opacity: 1;
+        background-position: 100% 100%;
+      }
+
+      /* 4. Button & Text Micro-interactions */
+      #faq .faq-btn {
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      /* Question text turns purple on hover */
+      #faq .faq-btn:hover .font-medium {
+        color: #a78bfa;
+        transition: color 0.3s ease;
+      }
+
+      /* Chevron icon scales up and changes color */
+      #faq .faq-btn:hover .faq-icon {
+        transform: scale(1.15);
+        color: #a78bfa;
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+      }
+
+      /* Rotated icon state (when accordion is open) */
+      #faq .faq-icon.rotated {
+        transform: rotate(180deg);
+      }
+
+      /* 5. Answer Text Fade-in */
+      .faq-answer {
+        opacity: 0;
+        transition:
+          max-height 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+          padding 0.3s ease,
+          opacity 0.4s ease 0.1s;
+        padding: 0 1.25rem;
+      }
+      .faq-answer.open {
+        opacity: 1;
+        padding: 0.75rem 1.25rem 1.25rem;
+      }
+
+      /* ── Light Mode Overrides ── */
+      body.light #faq .glass-card:hover {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+      body.light #faq .faq-btn:hover .font-medium {
+        color: #7c3aed;
+      }
+      body.light #faq .faq-btn:hover .faq-icon {
+        color: #7c3aed;
+      }
+      /* ── Footer Light Mode Fixes ── */
+      /* Force footer background and base text color to stay dark/white in light mode */
+      body.light footer {
+        background: #0b0f19 !important;
+        color: #ffffff !important; /* This ensures the "Neuro" text inherits white */
+      }
+
+      /* Maintain exact opacity hierarchy for the footer text */
+      body.light footer .text-white\/70 {
+        color: rgba(255, 255, 255, 0.7) !important;
+      }
+      body.light footer .text-white\/60 {
+        color: rgba(255, 255, 255, 0.6) !important;
+      }
+      body.light footer .text-white\/50 {
+        color: rgba(255, 255, 255, 0.5) !important;
+      }
+      body.light footer .text-white\/40 {
+        color: rgba(255, 255, 255, 0.4) !important;
+      }
+      body.light footer .text-white\/30 {
+        color: rgba(255, 255, 255, 0.3) !important;
+      }
+      body.light footer .text-white {
+        color: #ffffff !important;
+      }
+
+      /* Fix Hover states inside footer during light mode */
+      body.light footer .hover\:text-white:hover {
+        color: #ffffff !important;
+      }
+      body.light footer .hover\:text-purple-400:hover {
+        color: #a78bfa !important;
+      }
+
+      /* Ensure borders and backgrounds inside footer stay dark-optimized */
+      body.light footer .border-white\/5 {
+        border-color: rgba(255, 255, 255, 0.05) !important;
+      }
+      body.light footer .border-white\/10 {
+        border-color: rgba(255, 255, 255, 0.1) !important;
+      }
+      body.light footer .bg-white\/5 {
+        background: rgba(255, 255, 255, 0.05) !important;
+      }
+      /* ── Secondary Button Light Mode Fix ── */
+      body.light .btn-secondary {
+        background: rgba(
+          0,
+          0,
+          255,
+          0.1
+        ) !important; /* Semi-transparent glass */
+        border-color: rgba(
+          0,
+          0,
+          0,
+          0.15
+        ) !important; /* Darker border for contrast */
+        color: rgba(11, 15, 25, 0.9) !important; /* Readable text color */
+        backdrop-filter: blur(8px);
+      }
+
+      body.light .btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.25) !important;
+        border-color: rgba(
+          124,
+          58,
+          237,
+          0.4
+        ) !important; /* Purple border on hover */
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+        transform: translateY(-3px);
+      }
+
+      /* Fix the icons inside secondary buttons */
+      body.light .btn-secondary i {
+        color: rgba(11, 15, 25, 0.9) !important;
+      }
+      /* ── Mobile Menu Slide Animation ── */
+      #mobileMenu {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        transform: translateY(-10px);
+        pointer-events: none;
+      }
+
+      #mobileMenu.open {
+        max-height: 600px; /* Adjust based on content height */
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
       }
     </style>
   </head>
   <body>
+    <!-- Noise Overlay -->
+    <div class="noise-overlay"></div>
+
     <!-- ════════════════════════════════════════ -->
     <!--  NAVBAR                                -->
     <!-- ════════════════════════════════════════ -->
@@ -510,19 +1244,34 @@
 
           <!-- Desktop Nav -->
           <nav
-            class="hidden md:flex items-center gap-8 text-sm font-medium text-white/70"
+            class="hidden md:flex items-center gap-6 text-sm font-medium text-white/70"
           >
-            <a href="#home" class="hover:text-white transition">Home</a>
-            <a href="#features" class="hover:text-white transition">Features</a>
-            <a href="#pricing" class="hover:text-white transition">Pricing</a>
-            <a href="#testimonials" class="hover:text-white transition"
+            <a href="#home" class="nav-link hover:text-white transition"
+              >Home</a
+            >
+            <a href="#features" class="nav-link hover:text-white transition"
+              >Features</a
+            >
+            <a href="#pricing" class="nav-link hover:text-white transition"
+              >Pricing</a
+            >
+            <a href="#testimonials" class="nav-link hover:text-white transition"
               >Testimonials</a
             >
-            <a href="#contact" class="hover:text-white transition">Contact</a>
+            <a href="#contact" class="nav-link hover:text-white transition"
+              >Contact</a
+            >
           </nav>
 
-          <!-- Buttons -->
+          <!-- Buttons + Theme Toggle -->
           <div class="flex items-center gap-3">
+            <button
+              id="themeToggle"
+              class="theme-toggle text-white/70 hover:text-white text-lg transition"
+              aria-label="Toggle theme"
+            >
+              <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
             <a
               href="#"
               class="hidden sm:inline-block text-sm font-medium text-white/80 hover:text-white transition"
@@ -546,7 +1295,7 @@
         <!-- Mobile Nav -->
         <div
           id="mobileMenu"
-          class="md:hidden hidden pb-4 space-y-2 text-sm font-medium text-white/70"
+          class="md:hidden pb-4 space-y-2 text-sm font-medium text-white/70"
         >
           <a href="#home" class="block py-2 hover:text-white transition"
             >Home</a
@@ -578,7 +1327,7 @@
     </header>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  HERO SECTION (Enhanced)               -->
+    <!--  HERO SECTION (Enhanced Dashboard)     -->
     <!-- ════════════════════════════════════════ -->
     <section
       id="home"
@@ -624,13 +1373,13 @@
             <div class="flex flex-wrap gap-4 pt-2">
               <a
                 href="#"
-                class="gradient-btn text-white font-semibold px-7 py-3.5 rounded-full shadow-lg shadow-purple-900/30 flex items-center gap-2"
+                class="hero-btn gradient-btn text-white font-semibold px-7 py-3.5 rounded-full shadow-lg shadow-purple-900/30 flex items-center gap-2"
               >
                 <i class="fas fa-rocket"></i> Start Building
               </a>
               <a
                 href="#"
-                class="glass-light text-white font-medium px-7 py-3.5 rounded-full border border-white/10 hover:border-white/30 transition flex items-center gap-2"
+                class="btn-secondary hero-btn glass-light text-white font-medium px-7 py-3.5 rounded-full border border-white/10 hover:border-white/30 transition flex items-center gap-2"
               >
                 <i class="fas fa-play-circle"></i> Watch Demo
               </a>
@@ -647,9 +1396,10 @@
             </div>
           </div>
 
-          <!-- Right: Dashboard Mockup -->
+          <!-- Right: Enhanced Dashboard Mockup -->
           <div class="relative">
             <div class="dashboard-mockup p-4 md:p-6 float">
+              <!-- Window controls -->
               <div class="flex items-center gap-2 mb-4">
                 <div class="w-3 h-3 rounded-full bg-red-400/60"></div>
                 <div class="w-3 h-3 rounded-full bg-yellow-400/60"></div>
@@ -658,61 +1408,75 @@
                   >dashboard.neuromind.ai</span
                 >
               </div>
-              <!-- Chart -->
+
+              <!-- Stats Grid -->
               <div class="grid grid-cols-3 gap-3 mb-4">
+                <div class="glass-light p-3 rounded-xl">
+                  <div class="text-xs text-white/40">Revenue</div>
+                  <div
+                    class="text-xl font-bold stat-number"
+                    data-target="128.4"
+                    data-suffix="K"
+                  >
+                    0
+                  </div>
+                  <div class="text-xs text-green-400">+28%</div>
+                </div>
+                <div class="glass-light p-3 rounded-xl">
+                  <div class="text-xs text-white/40">Users</div>
+                  <div
+                    class="text-xl font-bold stat-number"
+                    data-target="12.45"
+                    data-suffix="K"
+                  >
+                    0
+                  </div>
+                  <div class="text-xs text-green-400">+14%</div>
+                </div>
                 <div class="glass-light p-3 rounded-xl">
                   <div class="text-xs text-white/40">AI Requests</div>
                   <div
                     class="text-xl font-bold stat-number"
-                    data-target="124.8"
-                    data-suffix="K"
+                    data-target="2.4"
+                    data-suffix="M"
                   >
                     0
                   </div>
-                  <div class="text-xs text-green-400">+12.3%</div>
-                </div>
-                <div class="glass-light p-3 rounded-xl">
-                  <div class="text-xs text-white/40">Latency</div>
-                  <div
-                    class="text-xl font-bold stat-number"
-                    data-target="42"
-                    data-suffix="ms"
-                  >
-                    0
-                  </div>
-                  <div class="text-xs text-green-400">-8%</div>
-                </div>
-                <div class="glass-light p-3 rounded-xl">
-                  <div class="text-xs text-white/40">Active Users</div>
-                  <div
-                    class="text-xl font-bold stat-number"
-                    data-target="3.2"
-                    data-suffix="K"
-                  >
-                    0
-                  </div>
-                  <div class="text-xs text-green-400">+5.1%</div>
+                  <div class="text-xs text-green-400">+22%</div>
                 </div>
               </div>
-              <!-- Bar chart -->
-              <div class="flex items-end gap-2 h-24 mt-2">
-                <div class="flex-1 bg-purple-500/30 rounded-t h-12"></div>
-                <div class="flex-1 bg-purple-500/40 rounded-t h-16"></div>
-                <div class="flex-1 bg-purple-500/50 rounded-t h-20"></div>
-                <div class="flex-1 bg-blue-500/50 rounded-t h-24"></div>
-                <div class="flex-1 bg-blue-500/40 rounded-t h-18"></div>
-                <div class="flex-1 bg-blue-500/30 rounded-t h-14"></div>
+
+              <!-- Mini Chart (Zero Gap - Flush) -->
+              <div class="flex items-end h-24 mt-2">
+                <div
+                  class="flex-1 bg-purple-500/30 rounded-t h-12 chart-bar"
+                ></div>
+                <div
+                  class="flex-1 bg-purple-500/40 rounded-t h-16 chart-bar"
+                ></div>
+                <div
+                  class="flex-1 bg-purple-500/50 rounded-t h-20 chart-bar"
+                ></div>
+                <div
+                  class="flex-1 bg-blue-500/50 rounded-t h-24 chart-bar"
+                ></div>
+                <div
+                  class="flex-1 bg-blue-500/40 rounded-t h-20 chart-bar"
+                ></div>
+                <div
+                  class="flex-1 bg-blue-500/30 rounded-t h-14 chart-bar"
+                ></div>
               </div>
-              <!-- Floating element -->
+              <!-- Floating cards -->
               <div
-                class="absolute -top-3 -right-3 glass-light p-2 rounded-full border border-white/10 text-xs font-medium text-purple-300 float-delay"
+                class="absolute -top-4 -right-4 glass-light p-2 rounded-xl border border-white/10 text-xs font-medium text-purple-300 float-delay"
               >
-                <i class="fas fa-sparkles mr-1"></i> Live
+                <i class="fas fa-trend-up mr-1"></i> +28%
               </div>
               <div
-                class="absolute bottom-4 left-4 glass-light p-2 rounded-full border border-white/10 text-xs font-medium text-blue-300 float-slow"
+                class="absolute bottom-6 left-4 glass-light p-2 rounded-full border border-white/10 text-xs font-medium text-blue-300 float-slow"
               >
-                <i class="fas fa-arrow-up mr-1"></i> +27%
+                <i class="fas fa-users mr-1"></i> 12 online
               </div>
             </div>
           </div>
@@ -721,14 +1485,14 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  TRUSTED BY (with Logo Float)          -->
+    <!--  TRUSTED BY (Social Proof)             -->
     <!-- ════════════════════════════════════════ -->
-    <section class="py-12 border-y border-white/5">
+    <section class="py-10 border-y border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p
-          class="text-center text-sm font-medium text-white/30 uppercase tracking-widest mb-8"
+          class="text-center text-sm font-medium text-white/40 uppercase tracking-widest mb-6"
         >
-          Trusted by innovative teams
+          Trusted by 10,000+ teams
         </p>
         <div
           class="flex flex-wrap justify-center items-center gap-8 md:gap-12 lg:gap-16 opacity-60"
@@ -770,7 +1534,47 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  FEATURES (Staggered Fade)             -->
+    <!--  STATS SECTION (Isolated Animations)    -->
+    <!-- ════════════════════════════════════════ -->
+    <section id="stats" class="py-16 md:py-20 bg-white/5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+          <div class="glass-card p-6 rounded-2xl">
+            <div
+              class="text-4xl md:text-5xl font-bold stat-number"
+              data-target="2"
+              data-suffix="M+"
+            >
+              0
+            </div>
+            <p class="text-white/50 text-sm mt-2">Users worldwide</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div
+              class="text-4xl md:text-5xl font-bold stat-number"
+              data-target="99.9"
+              data-suffix="%"
+            >
+              0
+            </div>
+            <p class="text-white/50 text-sm mt-2">Uptime guarantee</p>
+          </div>
+          <div class="glass-card p-6 rounded-2xl">
+            <div
+              class="text-4xl md:text-5xl font-bold stat-number"
+              data-target="150"
+              data-suffix="+"
+            >
+              0
+            </div>
+            <p class="text-white/50 text-sm mt-2">Countries served</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ════════════════════════════════════════ -->
+    <!--  FEATURES (Staggered Fade + Hover Effects)-->
     <!-- ════════════════════════════════════════ -->
     <section id="features" class="py-20 md:py-28 fade-section">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -791,7 +1595,7 @@
           <!-- Card 1 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-robot"></i>
             </div>
@@ -804,7 +1608,7 @@
           <!-- Card 2 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-chart-line"></i>
             </div>
@@ -817,7 +1621,7 @@
           <!-- Card 3 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-shield-alt"></i>
             </div>
@@ -829,7 +1633,7 @@
           <!-- Card 4 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-cloud"></i>
             </div>
@@ -842,7 +1646,7 @@
           <!-- Card 5 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-users"></i>
             </div>
@@ -854,7 +1658,7 @@
           <!-- Card 6 -->
           <div class="glass-card p-6 md:p-8 rounded-2xl">
             <div
-              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4"
+              class="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-300 text-xl mb-4 icon-rotate"
             >
               <i class="fas fa-plug"></i>
             </div>
@@ -961,7 +1765,7 @@
     <!-- ════════════════════════════════════════ -->
     <!--  HOW IT WORKS                          -->
     <!-- ════════════════════════════════════════ -->
-    <section class="py-20 md:py-28 fade-section">
+    <section id="how-it-works" class="py-20 md:py-28 fade-section">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-16">
           <span
@@ -1012,9 +1816,8 @@
         </div>
       </div>
     </section>
-
     <!-- ════════════════════════════════════════ -->
-    <!--  PRICING                               -->
+    <!--  PRICING (Enhanced)                    -->
     <!-- ════════════════════════════════════════ -->
     <section id="pricing" class="py-20 md:py-28 bg-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1274,11 +2077,10 @@
         </div>
       </div>
     </section>
-
     <!-- ════════════════════════════════════════ -->
     <!--  FAQ                                   -->
     <!-- ════════════════════════════════════════ -->
-    <section class="py-20 md:py-28 fade-section bg-white/5">
+    <section id="faq" class="py-20 md:py-28 bg-white/5">
       <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-2xl mx-auto mb-14">
           <span
@@ -1352,7 +2154,7 @@
     <!-- ════════════════════════════════════════ -->
     <!--  CTA                                    -->
     <!-- ════════════════════════════════════════ -->
-    <section class="py-20 md:py-28 fade-section">
+    <section id="cta" class="py-20 md:py-28 fade-section">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div
           class="glass-card p-12 md:p-16 rounded-3xl relative overflow-hidden"
@@ -1375,7 +2177,7 @@
             </a>
             <a
               href="#"
-              class="glass-light text-white font-medium px-8 py-4 rounded-full border border-white/10 hover:border-white/30 transition"
+              class="btn-secondary glass-light text-white font-medium px-8 py-4 rounded-full border border-white/10 hover:border-white/30 transition"
               >Talk to Sales</a
             >
           </div>
@@ -1388,11 +2190,12 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  FOOTER                                -->
+    <!--  FOOTER (Enhanced & Light-Mode Safe)    -->
     <!-- ════════════════════════════════════════ -->
     <footer id="contact" class="border-t border-white/5 bg-[#0B0F19]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
+          <!-- Brand -->
           <div>
             <div class="flex items-center gap-2 mb-4">
               <span class="logo-dot"></span>
@@ -1419,8 +2222,10 @@
               ></a>
             </div>
           </div>
+
+          <!-- Product -->
           <div>
-            <h4 class="text-sm font-semibold mb-3">Product</h4>
+            <h4 class="text-sm font-semibold mb-3 text-white/70">Product</h4>
             <ul class="space-y-2 text-sm text-white/40">
               <li>
                 <a href="#" class="hover:text-white transition">Features</a>
@@ -1436,8 +2241,33 @@
               </li>
             </ul>
           </div>
+
+          <!-- Resources -->
           <div>
-            <h4 class="text-sm font-semibold mb-3">Company</h4>
+            <h4 class="text-sm font-semibold mb-3 text-white/70">Resources</h4>
+            <ul class="space-y-2 text-sm text-white/40">
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >Documentation</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition"
+                  >API Reference</a
+                >
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Guides</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition">Status</a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Company -->
+          <div>
+            <h4 class="text-sm font-semibold mb-3 text-white/70">Company</h4>
             <ul class="space-y-2 text-sm text-white/40">
               <li><a href="#" class="hover:text-white transition">About</a></li>
               <li><a href="#" class="hover:text-white transition">Blog</a></li>
@@ -1449,30 +2279,28 @@
               </li>
             </ul>
           </div>
-          <div>
-            <h4 class="text-sm font-semibold mb-3">Newsletter</h4>
-            <p class="text-sm text-white/40 mb-3">
-              Get product updates and AI insights.
-            </p>
-            <div class="flex gap-2">
-              <input
-                type="email"
-                placeholder="you@example.com"
-                class="flex-1 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-purple-500/50"
-              />
-              <button
-                class="gradient-btn text-white text-sm font-medium px-4 py-2 rounded-full"
-              >
-                Subscribe
-              </button>
-            </div>
-          </div>
         </div>
+
+        <!-- Newsletter & Bottom -->
         <div
-          class="border-t border-white/5 mt-12 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-white/30"
+          class="border-t border-white/5 mt-12 pt-8 flex flex-col lg:flex-row justify-between items-center gap-4"
         >
-          <span>&copy; 2026 NeuroMind. All rights reserved.</span>
-          <div class="flex gap-6">
+          <div class="flex gap-2 w-full lg:w-auto">
+            <input
+              type="email"
+              placeholder="you@example.com"
+              class="flex-1 min-w-0 lg:w-64 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-purple-500/50"
+            />
+            <button
+              class="gradient-btn text-white text-sm font-medium px-4 py-2 rounded-full whitespace-nowrap"
+            >
+              Subscribe
+            </button>
+          </div>
+          <p class="text-xs text-white/30">
+            &copy; 2026 NeuroMind. All rights reserved.
+          </p>
+          <div class="flex gap-6 text-xs text-white/30">
             <a href="#" class="hover:text-white transition">Privacy</a>
             <a href="#" class="hover:text-white transition">Terms</a>
             <a href="#" class="hover:text-white transition">Cookies</a>
@@ -1482,21 +2310,21 @@
     </footer>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  JAVASCRIPT (Scroll, Count-Up, FAQ)    -->
+    <!--  JAVASCRIPT                            -->
     <!-- ════════════════════════════════════════ -->
     <script>
       (function () {
         "use strict";
 
-        // ── Mobile menu ──
+        // ── Mobile menu smooth toggle ──
         const toggle = document.getElementById("menuToggle");
         const mobileMenu = document.getElementById("mobileMenu");
+
         if (toggle && mobileMenu) {
           toggle.addEventListener("click", function () {
-            mobileMenu.classList.toggle("hidden");
+            mobileMenu.classList.toggle("open");
           });
         }
-
         // ── FAQ Accordion ──
         const faqBtns = document.querySelectorAll(".faq-btn");
         faqBtns.forEach((btn) => {
@@ -1517,32 +2345,33 @@
           });
         });
 
-        // ── Pricing Toggle with counting & fade ──
+        // ── FAQ Section Dedicated Observer ──
+        const faqSection = document.getElementById("faq");
+        if (faqSection) {
+          const faqObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  faqSection.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+          );
+          faqObserver.observe(faqSection);
+        }
+
+        // ── Pricing Toggle ──
         const pricingToggle = document.getElementById("pricingToggle");
         const priceDisplays = document.querySelectorAll(".price-display");
-
         if (pricingToggle && priceDisplays.length) {
-          // Store current values for count-up animation
-          let currentValues = {};
-
-          // Initialize current values
-          priceDisplays.forEach((el) => {
-            const monthly = el.dataset.monthly;
-            if (monthly !== "custom") {
-              currentValues[el.dataset.monthly] = parseFloat(monthly);
-            }
-          });
-
           pricingToggle.addEventListener("change", function () {
             const isYearly = this.checked;
-
             priceDisplays.forEach((el) => {
               const monthly = el.dataset.monthly;
               if (monthly === "custom") return;
-
               const base = parseFloat(monthly);
               let newPrice, suffix;
-
               if (isYearly) {
                 newPrice = Math.round(base * 12 * 0.8);
                 suffix = "/yr";
@@ -1550,8 +2379,6 @@
                 newPrice = base;
                 suffix = "/mo";
               }
-
-              // Fade out, update, then fade in
               el.classList.add("switching");
               setTimeout(() => {
                 el.innerHTML = `$${newPrice}<span class="text-base font-normal text-white/40">${suffix}</span>`;
@@ -1561,7 +2388,7 @@
           });
         }
 
-        // ── Scroll Reveal for Pricing Cards ──
+        // ── Scroll Reveal for Pricing ──
         const revealObserver = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -1572,16 +2399,44 @@
           },
           { threshold: 0.15, rootMargin: "0px 0px -30px 0px" },
         );
-
         document.querySelectorAll(".pricing-card").forEach((card) => {
           revealObserver.observe(card);
         });
 
-        // ── Intersection Observer for Fade & Count-Up ──
+        // ── Fade sections ──
         const sections = document.querySelectorAll(".fade-section");
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+          );
+          sections.forEach((s) => observer.observe(s));
+        } else {
+          sections.forEach((s) => s.classList.add("visible"));
+        }
+        // ── Stats Section Dedicated Observer (No conflicts) ──
+        const statsSection = document.getElementById("stats");
+        if (statsSection) {
+          const statsObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  statsSection.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+          );
+          statsObserver.observe(statsSection);
+        }
+        // ── Count-Up ──
         const statNumbers = document.querySelectorAll(".stat-number");
-
-        // Count-Up logic
         function animateValue(el, start, end, duration, suffix) {
           let startTimestamp = null;
           const step = (timestamp) => {
@@ -1603,9 +2458,7 @@
           };
           window.requestAnimationFrame(step);
         }
-
         let countedStats = new Set();
-
         function checkStats() {
           statNumbers.forEach((el) => {
             if (countedStats.has(el)) return;
@@ -1621,29 +2474,25 @@
             }
           });
         }
-
-        // Fade observer
-        if ("IntersectionObserver" in window) {
-          const observer = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("visible");
-                }
-              });
-            },
-            { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
-          );
-          sections.forEach((s) => observer.observe(s));
-        } else {
-          sections.forEach((s) => s.classList.add("visible"));
-        }
-
-        // Count-up observer (check on scroll and load)
         window.addEventListener("scroll", checkStats);
         window.addEventListener("load", checkStats);
-        // Also check after a short delay for any lazy-loaded content
         setTimeout(checkStats, 500);
+
+        // ── Theme Toggle ──
+        const themeToggle = document.getElementById("themeToggle");
+        const themeIcon = document.getElementById("themeIcon");
+        const body = document.body;
+        // Check localStorage
+        if (localStorage.getItem("theme") === "light") {
+          body.classList.add("light");
+          themeIcon.className = "fas fa-sun";
+        }
+        themeToggle.addEventListener("click", function () {
+          body.classList.toggle("light");
+          const isLight = body.classList.contains("light");
+          themeIcon.className = isLight ? "fas fa-sun" : "fas fa-moon";
+          localStorage.setItem("theme", isLight ? "light" : "dark");
+        });
       })();
     </script>
   </body>
