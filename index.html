@@ -13,6 +13,10 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+    />
     <style>
       /* ── Reset & Base ── */
       * {
@@ -40,6 +44,16 @@
         color: #0b0f19;
       }
 
+      /* 1. در حالت ماهانه (unchecked): ریل رو خاکستری تیره میکنیم */
+      body.light .peer:not(:checked) ~ .pricing-toggle-track {
+        background: #1e293b !important; /* رنگ slate-800 */
+      }
+
+      /* 2. توپک رو در لایت مود همیشه سفید نگه میداریم (مثل دارک مود) */
+      body.light .pricing-toggle-knob {
+        background: #ffffff !important;
+      }
+
       /* 1. Glass panels - increased opacity for perfect contrast */
       body.light .glass,
       body.light .glass-light,
@@ -48,6 +62,164 @@
         background: rgba(255, 255, 255, 0.85) !important;
         backdrop-filter: blur(20px);
         border-color: rgba(0, 0, 0, 0.05);
+        /* اضافه کردن یک سایه بسیار ظریف و حرفه‌ای */
+        box-shadow: 0 4px 20px rgba(37, 72, 88, 0.548) !important;
+      }
+      body.light .glass-card:hover {
+        background: rgba(255, 255, 255, 0.95) !important;
+      }
+
+      /* 2. Force ALL white/opacity text to become Dark Gray/Black */
+      body.light .text-white,
+      body.light .text-white\/95,
+      body.light .text-white\/90,
+      body.light .text-white\/80,
+      body.light .text-white\/70,
+      body.light .text-white\/60,
+      body.light .text-white\/50,
+      body.light .text-white\/40,
+      body.light .text-white\/30 {
+        color: rgba(11, 15, 25, 0.9) !important;
+      }
+
+      /* 3. FIX pale utility colors (so they are bold & visible) */
+      body.light .text-purple-300 {
+        color: #7c3aed !important;
+      } /* purple-600 */
+      body.light .text-purple-400 {
+        color: #7c3aed !important;
+      } /* purple-600 */
+      body.light .text-blue-300 {
+        color: #3b82f6 !important;
+      } /* blue-500 */
+      body.light .text-blue-400 {
+        color: #3b82f6 !important;
+      } /* blue-500 */
+      body.light .text-green-400 {
+        color: #16a34a !important;
+      } /* green-600 */
+      body.light .text-yellow-400 {
+        color: #d97706 !important;
+      } /* amber-600 */
+
+      /* 4. PRESERVE WHITE TEXT on gradient buttons & badges (Fixes "Most Popular" badge) */
+      body.light .gradient-btn,
+      body.light .gradient-btn i,
+      body.light .gradient-btn .text-white,
+      body.light .bg-gradient-to-r .text-white,
+      body.light .bg-gradient-to-tr .text-white,
+      body.light .pricing-pro .absolute.text-white {
+        color: #ffffff !important;
+      }
+
+      /* 5. Fix Hover States */
+      body.light .hover\:text-white:hover {
+        color: rgba(11, 15, 25, 0.9) !important;
+      }
+      body.light .hover\:text-purple-400:hover {
+        color: #7c3aed !important;
+      }
+
+      /* 6. Other light mode adjustments */
+      body.light .pricing-pro {
+        border-color: rgba(124, 58, 237, 0.2);
+      }
+      body.light .bg-white\/5 {
+        background: rgba(0, 0, 0, 0.03);
+      }
+      body.light .border-white\/5 {
+        border-color: rgba(0, 0, 0, 0.05);
+      }
+      body.light .border-white\/10 {
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+      body.light .glow-purple,
+      body.light .glow-blue {
+        opacity: 0.4;
+      }
+      body.light .hero-grid {
+        background-image: radial-gradient(
+          circle,
+          rgba(0, 0, 0, 0.05) 1px,
+          transparent 1px
+        );
+      }
+      body.light .company-logo {
+        filter: grayscale(1) brightness(0.8);
+      }
+      body.light .company-logo:hover {
+        filter: grayscale(0) brightness(1);
+      }
+
+      /* ── Light mode hover glow effects (ساده و نهایی) ── */
+
+      /* 1. نور ملایم برای همه کارت‌های شیشه‌ای (Features, Stats, FAQ, معمولی) */
+      body.light .glass-card:hover {
+        box-shadow: 0 24px 48px rgba(124, 58, 237, 0.5) !important;
+        border-color: rgba(124, 58, 237, 0.3) !important;
+      }
+      /* 1. نور ملایم برای کارت‌های شیشه‌ای تیره (مثل Features, Stats, FAQ) */
+      body.light .glass-card:hover {
+        box-shadow: 0 24px 48px rgba(124, 58, 237, 0.12) !important;
+        border-color: rgba(124, 58, 237, 0.3) !important;
+      }
+
+      /* 2. نور ملایم برای کارت‌های شیشه‌ای روشن (مثل کارت‌های Showcase) */
+      body.light .glass-light:hover {
+        box-shadow: 0 16px 32px rgba(124, 58, 237, 0.1) !important;
+        border-color: rgba(124, 58, 237, 0.25) !important;
+      }
+
+      /* 3. درخشش بسیار قوی و چشم‌نواز (نور بنفش/آبی) فقط برای کارت Pro */
+      body.light .pricing-pro:hover {
+        box-shadow:
+          0 0 30px rgba(124, 58, 237, 0.5),
+          /* نور بنفش متمرکز (می‌زنه تو چشم) */ 0 0 60px rgba(59, 130, 246, 0.2),
+          /* نور آبی پخش‌شونده (برای ترکیب گرادینت) */ 0 30px 60px
+            rgba(0, 0, 0, 0.1) !important; /* سایه عمق کارت */
+        border-color: rgba(
+          124,
+          58,
+          237,
+          0.6
+        ) !important; /* دور کارت بنفش پررنگ‌تر */
+      }
+      /* 2. درخشش بسیار قوی و چشم‌نواز (نور بنفش/آبی) فقط برای کارت Pro */
+      body.light .pricing-pro:hover {
+        box-shadow:
+          0 0 30px rgba(124, 58, 237, 0.75),
+          /* نور بنفش متمرکز (می‌زنه تو چشم) */ 0 0 60px
+            rgba(59, 131, 246, 0.75),
+          /* نور آبی پخش‌شونده (برای ترکیب گرادینت) */ 0 30px 60px
+            rgba(0, 0, 0, 0.5) !important; /* سایه عمق کارت */
+        border-color: rgba(
+          124,
+          58,
+          237,
+          0.6
+        ) !important; /* دور کارت بنفش پررنگ‌تر */
+      }
+      /*  */
+      /* 1. در حالت ماهانه (unchecked): ریل رو خاکستری تیره میکنیم */
+      body.light .peer:not(:checked) ~ .pricing-toggle-track {
+        background: #1e293b !important; /* رنگ slate-800 */
+      }
+
+      /* 2. توپک رو در لایت مود همیشه سفید نگه میداریم (مثل دارک مود) */
+      body.light .pricing-toggle-knob {
+        background: #ffffff !important;
+      }
+
+      /* 1. Glass panels - increased opacity for perfect contrast */
+      body.light .glass,
+      body.light .glass-light,
+      body.light .glass-card,
+      body.light .dashboard-mockup {
+        background: rgba(255, 255, 255, 0.85) !important;
+        backdrop-filter: blur(20px);
+        border-color: rgba(0, 0, 0, 0.05);
+        /* اضافه کردن یک سایه بسیار ظریف و حرفه‌ای */
+        box-shadow: 0 4px 20px rgba(37, 72, 88, 0.548) !important;
       }
       body.light .glass-card:hover {
         background: rgba(255, 255, 255, 0.95) !important;
@@ -196,7 +368,54 @@
         transform: translateY(-6px) scale(1.01);
         box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
       }
+      /* ── Swiper Custom Styles for Testimonials ── */
+      .testimonials-swiper .swiper-slide {
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+        /* ارتفاع کارت‌ها را یکسان می‌کند */
+        height: auto;
+      }
 
+      /* کارت سمت چپ (محروم و کمی به چپ رفته) */
+      .testimonials-swiper .swiper-slide-prev {
+        opacity: 0.2;
+        transform: translateX(-30px) scale(0.95);
+      }
+
+      /* کارت سمت راست (کمی محوتر و تازه وارد شده) */
+      .testimonials-swiper .swiper-slide-next {
+        opacity: 0.6;
+        transform: translateX(30px) scale(0.98);
+      }
+
+      /* کارت وسط (کاملاً واضح) */
+      .testimonials-swiper .swiper-slide-active {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      /* استایل نقاط پایین اسلایدر (دات‌ها) در دارک مود */
+      .testimonials-swiper .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.3);
+        opacity: 1;
+        width: 8px;
+        height: 8px;
+        transition: all 0.3s ease;
+      }
+      .testimonials-swiper .swiper-pagination-bullet-active {
+        background: #7c3aed; /* بنفش */
+        width: 24px;
+        border-radius: 4px;
+      }
+
+      /* استایل نقاط در لایت مود */
+      body.light .testimonials-swiper .swiper-pagination-bullet {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      body.light .testimonials-swiper .swiper-pagination-bullet-active {
+        background: #7c3aed;
+      }
       /* ── Gradients ── */
       .gradient-text {
         background: linear-gradient(135deg, #a78bfa, #3b82f6);
@@ -1220,6 +1439,31 @@
         transform: translateY(0);
         pointer-events: auto;
       }
+      /* ── Swiper Auto Width ── */
+      .testimonials-swiper .swiper-slide {
+        width: 280px; /* عرض کارت در موبایل */
+        height: auto;
+        padding-top: 12px; /* ایجاد فضای تنفس برای بالای کارت */
+        padding-bottom: 12px; /* ایجاد فضای تنفس برای پایین کارت */
+        overflow: visible; /* جلوگیری از برش خوردن هنگام تغییر سایز و حرکت */
+        transition:
+          opacity 0.5s ease,
+          transform 0.5s ease;
+      }
+
+      /* عرض کارت در تبلت */
+      @media (min-width: 640px) {
+        .testimonials-swiper .swiper-slide {
+          width: 300px;
+        }
+      }
+
+      /* عرض کارت در دسکتاپ */
+      @media (min-width: 1024px) {
+        .testimonials-swiper .swiper-slide {
+          width: 350px;
+        }
+      }
     </style>
   </head>
   <body>
@@ -1229,13 +1473,11 @@
     <!-- ════════════════════════════════════════ -->
     <!--  NAVBAR                                -->
     <!-- ════════════════════════════════════════ -->
-    <header
-      class="fixed top-0 left-0 w-full z-50 glass border-b border-white/5"
-    >
+    <header class="relative w-full z-50 glass border-b border-white/5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-16 md:h-20">
           <!-- Logo -->
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 shrink-0">
             <span class="logo-dot"></span>
             <span class="text-xl md:text-2xl font-bold tracking-tight"
               >Neuro<span class="text-white/70">Mind</span></span
@@ -1264,7 +1506,8 @@
           </nav>
 
           <!-- Buttons + Theme Toggle -->
-          <div class="flex items-center gap-3">
+          <div class="flex items-center gap-2 sm:gap-3 pr-4 md:pr-0">
+            <!-- Theme Toggle -->
             <button
               id="themeToggle"
               class="theme-toggle text-white/70 hover:text-white text-lg transition"
@@ -1272,16 +1515,19 @@
             >
               <i class="fas fa-moon" id="themeIcon"></i>
             </button>
+
             <a
               href="#"
               class="hidden sm:inline-block text-sm font-medium text-white/80 hover:text-white transition"
               >Sign In</a
             >
+
             <a
               href="#"
-              class="gradient-btn text-white text-sm font-semibold px-5 py-2.5 rounded-full shadow-lg shadow-purple-900/30"
+              class="btn-secondary gradient-btn text-white text-xs sm:text-sm font-semibold px-3 sm:px-5 py-2 sm:py-2.5 rounded-full shadow-lg shadow-purple-900/30 whitespace-nowrap"
               >Get Started</a
             >
+
             <!-- Mobile menu toggle -->
             <button
               id="menuToggle"
@@ -1325,7 +1571,6 @@
         </div>
       </div>
     </header>
-
     <!-- ════════════════════════════════════════ -->
     <!--  HERO SECTION (Enhanced Dashboard)     -->
     <!-- ════════════════════════════════════════ -->
@@ -1360,7 +1605,7 @@
               v3.0 — AI-native platform
             </div>
             <h1
-              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
+              class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
             >
               Build AI Products<br />
               <span class="gradient-text">Faster Than Ever</span>
@@ -1409,8 +1654,8 @@
                 >
               </div>
 
-              <!-- Stats Grid -->
-              <div class="grid grid-cols-3 gap-3 mb-4">
+              <!-- Stats Grid (FIX: 2 cols on mobile, 3 on larger screens) -->
+              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-4">
                 <div class="glass-light p-3 rounded-xl">
                   <div class="text-xs text-white/40">Revenue</div>
                   <div
@@ -1467,9 +1712,9 @@
                   class="flex-1 bg-blue-500/30 rounded-t h-14 chart-bar"
                 ></div>
               </div>
-              <!-- Floating cards -->
+              <!-- Floating cards (FIX: reduced offset on mobile to avoid clipping) -->
               <div
-                class="absolute -top-4 -right-4 glass-light p-2 rounded-xl border border-white/10 text-xs font-medium text-purple-300 float-delay"
+                class="absolute -top-2 -right-2 md:-top-4 md:-right-4 glass-light p-2 rounded-xl border border-white/10 text-xs font-medium text-purple-300 float-delay"
               >
                 <i class="fas fa-trend-up mr-1"></i> +28%
               </div>
@@ -1698,7 +1943,10 @@
             >
           </div>
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div class="glass-light p-4 rounded-xl col-span-1">
+            <!-- کارت ۱: Total Requests -->
+            <div
+              class="glass-light p-4 rounded-xl col-span-1 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+            >
               <div class="text-xs text-white/40">Total Requests</div>
               <div
                 class="text-2xl font-bold stat-number"
@@ -1714,7 +1962,11 @@
                 ></div>
               </div>
             </div>
-            <div class="glass-light p-4 rounded-xl col-span-1">
+
+            <!-- کارت ۲: Avg. Response -->
+            <div
+              class="glass-light p-4 rounded-xl col-span-1 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+            >
               <div class="text-xs text-white/40">Avg. Response</div>
               <div
                 class="text-2xl font-bold stat-number"
@@ -1730,7 +1982,11 @@
                 ></div>
               </div>
             </div>
-            <div class="glass-light p-4 rounded-xl col-span-1">
+
+            <!-- کارت ۳: Active Projects -->
+            <div
+              class="glass-light p-4 rounded-xl col-span-1 transition-all duration-300 hover:-translate-y-2 hover:scale-[1.02]"
+            >
               <div class="text-xs text-white/40">Active Projects</div>
               <div
                 class="text-2xl font-bold stat-number"
@@ -1839,11 +2095,13 @@
             <span class="text-white/60">Monthly</span>
             <label class="relative inline-flex items-center cursor-pointer">
               <input type="checkbox" id="pricingToggle" class="sr-only peer" />
+              <!-- تغییر: اضافه کردن کلاس pricing-toggle-track -->
               <div
-                class="w-11 h-6 bg-white/10 rounded-full peer peer-checked:bg-gradient-to-r peer-checked:from-purple-500 peer-checked:to-blue-500 transition"
+                class="pricing-toggle-track w-11 h-6 bg-white/10 rounded-full peer peer-checked:bg-gradient-to-r peer-checked:from-purple-500 peer-checked:to-blue-500 transition"
               ></div>
+              <!-- تغییر: اضافه کردن کلاس pricing-toggle-knob -->
               <div
-                class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"
+                class="pricing-toggle-knob absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition peer-checked:translate-x-5"
               ></div>
             </label>
             <span class="text-white/80"
@@ -1887,7 +2145,7 @@
             </ul>
             <a
               href="#"
-              class="pricing-btn mt-6 w-full py-3 text-center rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition flex items-center justify-center gap-2"
+              class="btn-secondary pricing-btn mt-6 w-full py-3 text-center rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition flex items-center justify-center gap-2"
             >
               Get Started
               <i
@@ -1935,7 +2193,7 @@
             </ul>
             <a
               href="#"
-              class="pricing-btn mt-6 w-full py-3 text-center rounded-full gradient-btn text-white font-medium shadow-lg shadow-purple-900/30 flex items-center justify-center gap-2"
+              class="btn-secondary pricing-btn mt-6 w-full py-3 text-center rounded-full gradient-btn text-white font-medium shadow-lg shadow-purple-900/30 flex items-center justify-center gap-2"
             >
               Get Started
               <i
@@ -1980,7 +2238,7 @@
             </ul>
             <a
               href="#"
-              class="pricing-btn mt-6 w-full py-3 text-center rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition flex items-center justify-center gap-2"
+              class="btn-secondary pricing-btn mt-6 w-full py-3 text-center rounded-full border border-white/10 text-sm font-medium hover:bg-white/5 transition flex items-center justify-center gap-2"
             >
               Contact Sales
               <i
@@ -1991,9 +2249,8 @@
         </div>
       </div>
     </section>
-
     <!-- ════════════════════════════════════════ -->
-    <!--  TESTIMONIALS                          -->
+    <!--  TESTIMONIALS (Swiper Carousel)       -->
     <!-- ════════════════════════════════════════ -->
     <section id="testimonials" class="py-20 md:py-28 fade-section">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -2007,73 +2264,168 @@
             Hear from teams that ship AI products with NeuroMind.
           </p>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <div class="glass-card p-6 rounded-2xl">
-            <div class="flex gap-1 text-yellow-400 text-sm mb-3">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i>
-            </div>
-            <p class="text-white/80 text-sm">
-              “NeuroMind cut our AI integration time by 70%. The API is a dream
-              to work with.”
-            </p>
-            <div class="flex items-center gap-3 mt-4">
-              <div
-                class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
-              >
-                AK
+
+        <!-- ساختار اسلایدر Swiper -->
+        <div class="swiper testimonials-swiper w-full pb-6">
+          <div class="swiper-wrapper pb-4">
+            <!-- کارت ۱ -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “NeuroMind cut our AI integration time by 70%. The API is a
+                  dream to work with.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    AK
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">Alex Kim</div>
+                    <div class="text-xs text-white/40">CTO, Lattice</div>
+                  </div>
+                </div>
               </div>
-              <div>
-                <div class="text-sm font-medium">Alex Kim</div>
-                <div class="text-xs text-white/40">CTO, Lattice</div>
+            </div>
+
+            <!-- کارت ۲ -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “The analytics dashboard gives us real-time visibility into
+                  every model. Game changer.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    MR
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">Maya Rivera</div>
+                    <div class="text-xs text-white/40">Head of AI, Replite</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- کارت ۳ -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “Security and compliance built-in — we passed SOC2 audit in
+                  record time.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    JC
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">James Chen</div>
+                    <div class="text-xs text-white/40">VP Eng, Axiom</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- کارت ۴ (تکرار کارت ۱ برای حلقه بی‌نهایت) -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “NeuroMind cut our AI integration time by 70%. The API is a
+                  dream to work with.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    AK
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">Alex Kim</div>
+                    <div class="text-xs text-white/40">CTO, Lattice</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- کارت ۵ (تکرار کارت ۲ برای حلقه بی‌نهایت) -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “The analytics dashboard gives us real-time visibility into
+                  every model. Game changer.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    MR
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">Maya Rivera</div>
+                    <div class="text-xs text-white/40">Head of AI, Replite</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- کارت ۶ (تکرار کارت ۳ برای حلقه بی‌نهایت) -->
+            <div class="swiper-slide h-auto">
+              <div class="glass-card p-6 rounded-2xl h-full flex flex-col">
+                <div class="flex gap-1 text-yellow-400 text-sm mb-3">
+                  <i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                  ><i class="fas fa-star-half-alt"></i>
+                </div>
+                <p class="text-white/80 text-sm flex-1">
+                  “Security and compliance built-in — we passed SOC2 audit in
+                  record time.”
+                </p>
+                <div class="flex items-center gap-3 mt-4">
+                  <div
+                    class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
+                  >
+                    JC
+                  </div>
+                  <div>
+                    <div class="text-sm font-medium">James Chen</div>
+                    <div class="text-xs text-white/40">VP Eng, Axiom</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div class="glass-card p-6 rounded-2xl">
-            <div class="flex gap-1 text-yellow-400 text-sm mb-3">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i>
-            </div>
-            <p class="text-white/80 text-sm">
-              “The analytics dashboard gives us real-time visibility into every
-              model. Game changer.”
-            </p>
-            <div class="flex items-center gap-3 mt-4">
-              <div
-                class="w-10 h-10 rounded-full bg-gradient-to-tr from-blue-500 to-purple-500 flex items-center justify-center text-xs font-bold"
-              >
-                MR
-              </div>
-              <div>
-                <div class="text-sm font-medium">Maya Rivera</div>
-                <div class="text-xs text-white/40">Head of AI, Replite</div>
-              </div>
-            </div>
-          </div>
-          <div class="glass-card p-6 rounded-2xl">
-            <div class="flex gap-1 text-yellow-400 text-sm mb-3">
-              <i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star"></i><i class="fas fa-star"></i
-              ><i class="fas fa-star-half-alt"></i>
-            </div>
-            <p class="text-white/80 text-sm">
-              “Security and compliance built-in — we passed SOC2 audit in record
-              time.”
-            </p>
-            <div class="flex items-center gap-3 mt-4">
-              <div
-                class="w-10 h-10 rounded-full bg-gradient-to-tr from-purple-500 to-blue-500 flex items-center justify-center text-xs font-bold"
-              >
-                JC
-              </div>
-              <div>
-                <div class="text-sm font-medium">James Chen</div>
-                <div class="text-xs text-white/40">VP Eng, Axiom</div>
-              </div>
-            </div>
-          </div>
+          <!-- دکمه‌های صفحه‌بندی (نقطه‌های زیرین) -->
+          <div class="swiper-pagination !relative !mt-6"></div>
         </div>
       </div>
     </section>
@@ -2190,43 +2542,64 @@
     </section>
 
     <!-- ════════════════════════════════════════ -->
-    <!--  FOOTER (Enhanced & Light-Mode Safe)    -->
+    <!--  FOOTER (Centered Content & Equal Spacing) -->
     <!-- ════════════════════════════════════════ -->
     <footer id="contact" class="border-t border-white/5 bg-[#0B0F19]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8">
-          <!-- Brand -->
-          <div>
-            <div class="flex items-center gap-2 mb-4">
+        <!-- والد فلکس با w-full برای پر کردن لبه‌ها -->
+        <div
+          class="flex flex-col lg:flex-row justify-between items-start gap-8 lg:gap-12 mb-12 md:mb-16 w-full"
+        >
+          <!-- 1. برند (سمت چپ) - با items-center و text-center -->
+          <div class="w-full lg:w-auto flex flex-col items-center text-center">
+            <div class="flex items-center gap-2">
               <span class="logo-dot"></span>
               <span class="text-xl font-bold tracking-tight"
                 >Neuro<span class="text-white/70">Mind</span></span
               >
             </div>
-            <p class="text-sm text-white/40 max-w-xs">
+            <!-- max-w-xs حذف شد، و pr-4 حذف شد تا متن کاملاً وسط‌چین شود -->
+            <p class="text-sm text-white/40 mt-4 leading-relaxed max-w-[260px]">
               Build AI products faster than ever with the most powerful platform
               for modern teams.
             </p>
-            <div class="flex gap-4 mt-4 text-white/30">
-              <a href="#" class="hover:text-purple-400 transition"
-                ><i class="fab fa-twitter"></i
-              ></a>
-              <a href="#" class="hover:text-purple-400 transition"
-                ><i class="fab fa-github"></i
-              ></a>
-              <a href="#" class="hover:text-purple-400 transition"
-                ><i class="fab fa-linkedin"></i
-              ></a>
-              <a href="#" class="hover:text-purple-400 transition"
-                ><i class="fab fa-youtube"></i
-              ></a>
+            <!-- آیکون‌ها با justify-center کاملاً وسط می‌افتند -->
+            <div class="flex items-center justify-center gap-3 mt-5">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-purple-400 transition"
+              >
+                <i class="fab fa-twitter text-sm"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-purple-400 transition"
+              >
+                <i class="fab fa-github text-sm"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-purple-400 transition"
+              >
+                <i class="fab fa-linkedin text-sm"></i>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-purple-400 transition"
+              >
+                <i class="fab fa-youtube text-sm"></i>
+              </a>
             </div>
           </div>
 
-          <!-- Product -->
-          <div>
-            <h4 class="text-sm font-semibold mb-3 text-white/70">Product</h4>
-            <ul class="space-y-2 text-sm text-white/40">
+          <!-- 2. Product - با items-center و text-center -->
+          <div class="w-full lg:w-auto flex flex-col items-center text-center">
+            <h4
+              class="text-sm font-semibold text-white/70 uppercase tracking-wider mb-4"
+            >
+              Product
+            </h4>
+            <ul class="space-y-3 text-sm text-white/40">
               <li>
                 <a href="#" class="hover:text-white transition">Features</a>
               </li>
@@ -2242,10 +2615,14 @@
             </ul>
           </div>
 
-          <!-- Resources -->
-          <div>
-            <h4 class="text-sm font-semibold mb-3 text-white/70">Resources</h4>
-            <ul class="space-y-2 text-sm text-white/40">
+          <!-- 3. Resources - با items-center و text-center -->
+          <div class="w-full lg:w-auto flex flex-col items-center text-center">
+            <h4
+              class="text-sm font-semibold text-white/70 uppercase tracking-wider mb-4"
+            >
+              Resources
+            </h4>
+            <ul class="space-y-3 text-sm text-white/40">
               <li>
                 <a href="#" class="hover:text-white transition"
                   >Documentation</a
@@ -2265,10 +2642,14 @@
             </ul>
           </div>
 
-          <!-- Company -->
-          <div>
-            <h4 class="text-sm font-semibold mb-3 text-white/70">Company</h4>
-            <ul class="space-y-2 text-sm text-white/40">
+          <!-- 4. Company (سمت راست) - با items-center و text-center -->
+          <div class="w-full lg:w-auto flex flex-col items-center text-center">
+            <h4
+              class="text-sm font-semibold text-white/70 uppercase tracking-wider mb-4"
+            >
+              Company
+            </h4>
+            <ul class="space-y-3 text-sm text-white/40">
               <li><a href="#" class="hover:text-white transition">About</a></li>
               <li><a href="#" class="hover:text-white transition">Blog</a></li>
               <li>
@@ -2281,25 +2662,34 @@
           </div>
         </div>
 
-        <!-- Newsletter & Bottom -->
+        <!-- بخش خبرنامه و پایین‌ترین خط -->
         <div
-          class="border-t border-white/5 mt-12 pt-8 flex flex-col lg:flex-row justify-between items-center gap-4"
+          class="border-t border-white/5 pt-8 flex flex-col lg:flex-row justify-between items-center gap-6 w-full"
         >
-          <div class="flex gap-2 w-full lg:w-auto">
-            <input
-              type="email"
-              placeholder="you@example.com"
-              class="flex-1 min-w-0 lg:w-64 bg-white/5 border border-white/10 rounded-full px-4 py-2 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-purple-500/50"
-            />
+          <!-- خبرنامه -->
+          <div
+            class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto"
+          >
+            <div class="relative w-full sm:w-auto flex-1 min-w-[200px]">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                class="w-full bg-white/5 border border-white/10 rounded-full px-5 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-purple-500/60 transition"
+              />
+            </div>
             <button
-              class="gradient-btn text-white text-sm font-medium px-4 py-2 rounded-full whitespace-nowrap"
+              class="gradient-btn text-white text-sm font-medium px-6 py-3 rounded-full whitespace-nowrap shadow-lg shadow-purple-900/20 hover:shadow-purple-900/40 transition-all"
             >
               Subscribe
             </button>
           </div>
-          <p class="text-xs text-white/30">
+
+          <!-- کپی رایت -->
+          <p class="text-xs text-white/30 text-center lg:text-left">
             &copy; 2026 NeuroMind. All rights reserved.
           </p>
+
+          <!-- لینک‌های قانونی -->
           <div class="flex gap-6 text-xs text-white/30">
             <a href="#" class="hover:text-white transition">Privacy</a>
             <a href="#" class="hover:text-white transition">Terms</a>
@@ -2493,6 +2883,42 @@
           themeIcon.className = isLight ? "fas fa-sun" : "fas fa-moon";
           localStorage.setItem("theme", isLight ? "light" : "dark");
         });
+
+        // ── Swiper Testimonials Carousel ──
+        const swiperScript = document.createElement("script");
+        swiperScript.src =
+          "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
+        document.body.appendChild(swiperScript);
+
+        swiperScript.onload = function () {
+          new Swiper(".testimonials-swiper", {
+            slidesPerView: "auto",
+            spaceBetween: 140, // فاصله در موبایل (نصف عرض 280 پیکسل)
+            centeredSlides: true,
+            loop: true,
+            watchSlidesProgress: true,
+            autoplay: {
+              delay: 4000,
+              disableOnInteraction: false,
+            },
+            pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+            },
+            breakpoints: {
+              640: {
+                spaceBetween: 150, // فاصله در تبلت (نصف عرض 300 پیکسل)
+                centeredSlides: true,
+                loop: true,
+              },
+              1024: {
+                spaceBetween: 175, // فاصله در دسکتاپ (نصف عرض 350 پیکسل)
+                centeredSlides: true,
+                loop: true,
+              },
+            },
+          });
+        };
       })();
     </script>
   </body>
