@@ -2735,6 +2735,18 @@
     <!--  JAVASCRIPT                            -->
     <!-- ════════════════════════════════════════ -->
     <script>
+                  // لودینگ اسکلتون فقط برای موبایل (بعد از لود کامل تیلویند مخفی می‌شود)
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            const loader = document.getElementById('skeleton-loader');
+            if (loader) {
+                loader.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+                setTimeout(function() {
+                    loader.classList.add('hidden');
+                }, 700);
+            }
+        }, 200); // 200 میلی‌ثانیه زمان برای شروع نمایش کارت‌ها
+    });
       (function () {
         "use strict";
 
@@ -2952,18 +2964,7 @@
           });
         };
       })();
-          // لودینگ اسکلتون فقط برای موبایل (بعد از لود کامل تیلویند مخفی می‌شود)
-    document.addEventListener("DOMContentLoaded", function() {
-        setTimeout(function() {
-            const loader = document.getElementById('skeleton-loader');
-            if (loader) {
-                loader.classList.add('opacity-0', 'transition-opacity', 'duration-700');
-                setTimeout(function() {
-                    loader.classList.add('hidden');
-                }, 700);
-            }
-        }, 200); // 200 میلی‌ثانیه زمان برای شروع نمایش کارت‌ها
-    });
+
     </script>
   </body>
 </html>
