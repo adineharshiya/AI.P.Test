@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NeuroMind — AI SaaS Platform</title>
 
-    <!-- پیش‌اتصال فقط برای دامنه‌های ضروری فونت -->
+    <!-- پیش‌اتصال (Preconnect) برای لود سریع‌تر فونت‌ها -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- اسکریپت تیلویند (بدون defer، تا همه چیز درست و پایدار لود شود) -->
-<script src="https://cdn.tailwindcss.com" async></script>    
-    <!-- بقیه لینک‌های استایل -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <!-- اسکریپت تیلویند (با async برای لود در پس‌زمینه و عدم مسدود کردن صفحه) -->
+    <script src="https://cdn.tailwindcss.com" async></script>
+
+    <!-- ████ بارگذاری غیرمسدودکننده فایل‌های CSS ████ -->
+    <!-- این کار باعث می‌شود مرورگر آن‌ها را در پس‌زمینه دانلود کند و زودتر سایت را نشان دهد -->
+
+    <!-- فونت آوسام (آیکون‌ها) -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
+
+    <!-- فونت گوگل (اینتر) -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"></noscript>
+
+    <!-- استایل Swiper -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"></noscript>
 </head>
     <style>
               @media (max-width: 768px) {
