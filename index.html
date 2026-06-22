@@ -5,15 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NeuroMind — AI SaaS Platform</title>
 
-    <!-- پیش‌اتصال فقط برای دامنه‌های ضروری فونت -->
+    <!-- پیش‌اتصال فقط برای دامنه‌های فونت -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- اسکریپت تیلویند (بدون defer، تا همه چیز درست و پایدار لود شود) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- بقیه لینک‌های استایل -->
+    <!-- ████ تغییر مهم: بارگذاری تیلویند به صورت CSS ████ -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- بقیه لینک‌ها -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <!-- این خط را جایگزین کنید -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
@@ -1487,6 +1488,37 @@
       @media (min-width: 1024px) {
         .testimonials-swiper .swiper-slide {
           width: 350px;
+        }
+      }
+      /*  */
+      /*  */
+            /* ── بهینه‌سازی نهایی برای افزایش نمره موبایل ── */
+      @media (max-width: 768px) {
+        /* 1. حذف نویز گرافیکی (سنگین‌ترین بخش) */
+        .noise-overlay {
+          display: none !important;
+        }
+
+        /* 2. کاهش شدید افکت شیشه‌ای (موبایل بابت blur جریمه می‌شود) */
+        .glass, .glass-light, .glass-card, .dashboard-mockup {
+          backdrop-filter: blur(2px) !important; /* کاهش یافته به 2px */
+          background: rgba(255, 255, 255, 0.3) !important;
+        }
+        body.light .glass, body.light .glass-light, body.light .glass-card, body.light .dashboard-mockup {
+          backdrop-filter: blur(2px) !important;
+          background: rgba(255, 255, 255, 0.92) !important;
+        }
+
+        /* 3. کاهش سایز نورهای پس‌زمینه */
+        .glow-purple, .glow-blue {
+          width: 100px !important;
+          height: 100px !important;
+          opacity: 0.5 !important;
+        }
+
+        /* 4. جلوگیری از حرکت ناگهانی لایه‌ها */
+        .hero-grid {
+          background-size: 20px 20px !important;
         }
       }
     </style>
