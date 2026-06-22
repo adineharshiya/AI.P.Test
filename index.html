@@ -3,39 +3,48 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="NeuroMind is a powerful AI-native platform that helps you build, deploy, and scale AI products faster than ever. Start your 14-day free trial now." />
-    <meta name="keywords" content="AI platform, SaaS, NeuroMind, AI infrastructure, build AI products" />
     <title>NeuroMind — AI SaaS Platform</title>
 
-    <!-- ████ پیش‌اتصال (Preconnect) برای لود سریع‌تر فایل‌های خارجی در موبایل ████ -->
+    <!-- پیش‌اتصال (Preconnect) -->
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
-    <!-- ████ اسکریپت تیلویند (بدون defer برای جلوگیری از به‌هم‌ریختگی ظاهری) ████ -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- برگرداندن defer برای لود غیرمسدودکننده تیلویند -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
     
-    <!-- ████ فونت آوسام (آیکون‌ها) ████ -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    
-    <!-- ████ فونت گوگل (اینتر) ████ -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
-      rel="stylesheet"
-    />
-    
-    <!-- ████ استایل Swiper ████ -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
     <style>
+              @media (max-width: 768px) {
+        .glow-purple, .glow-blue {
+          width: 250px;
+          height: 250px;
+        }
+        .hero-grid {
+          background-size: 25px 25px;
+        }
+        .dashboard-mockup .grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        
+        /* کاهش فشار روی پردازنده موبایل */
+        .noise-overlay {
+          display: none !important;
+        }
+        .glass, .glass-light, .glass-card, .dashboard-mockup {
+          backdrop-filter: blur(4px) !important; /* کاهش از 6 به 4 */
+          background: rgba(255, 255, 255, 0.15) !important;
+        }
+        body.light .glass, body.light .glass-light, body.light .glass-card, body.light .dashboard-mockup {
+          backdrop-filter: blur(4px) !important;
+          background: rgba(255, 255, 255, 0.92) !important;
+        }
+      }
       /* ── Reset & Base ── */
       * {
         margin: 0;
