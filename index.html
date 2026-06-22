@@ -10,8 +10,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- اسکریپت تیلویند (بدون defer، تا همه چیز درست و پایدار لود شود) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    
+<script src="https://cdn.tailwindcss.com" async></script>    
     <!-- بقیه لینک‌های استایل -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -2126,7 +2125,7 @@
           >
             <span class="text-white/60">Monthly</span>
             <label class="relative inline-flex items-center cursor-pointer">
-              <input type="checkbox" id="pricingToggle" class="sr-only peer" />
+              <input type="checkbox" id="pricingToggle" class="sr-only peer" aria-label="toggle billing between Monthly and Yearly"/>
               <!-- تغییر: اضافه کردن کلاس pricing-toggle-track -->
               <div
                 class="pricing-toggle-track w-11 h-6 bg-white/10 rounded-full peer peer-checked:bg-gradient-to-r peer-checked:from-purple-500 peer-checked:to-blue-500 transition"
