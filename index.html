@@ -1494,6 +1494,13 @@
     </style>
   </head>
   <body>
+        <!-- لایه لودینگ اسکلتون (مخفی است، فقط در موبایل فعال می‌شود) -->
+    <div id="skeleton-loader" class="fixed inset-0 z-[9999] bg-[#0b0f19] flex items-center justify-center lg:hidden">
+        <div class="flex flex-col items-center gap-4">
+            <span class="logo-dot w-12 h-12 animate-pulse"></span>
+            <div class="w-32 h-2 bg-white/10 rounded-full animate-pulse"></div>
+        </div>
+    </div>
     <!-- Noise Overlay -->
     <div class="noise-overlay"></div>
 
@@ -2947,6 +2954,18 @@
           });
         };
       })();
+          // لودینگ اسکلتون فقط برای موبایل (بعد از لود کامل تیلویند مخفی می‌شود)
+    document.addEventListener("DOMContentLoaded", function() {
+        setTimeout(function() {
+            const loader = document.getElementById('skeleton-loader');
+            if (loader) {
+                loader.classList.add('opacity-0', 'transition-opacity', 'duration-700');
+                setTimeout(function() {
+                    loader.classList.add('hidden');
+                }, 700);
+            }
+        }, 200); // 200 میلی‌ثانیه زمان برای شروع نمایش کارت‌ها
+    });
     </script>
   </body>
 </html>
